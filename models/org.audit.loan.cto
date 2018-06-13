@@ -1,0 +1,108 @@
+  /**
+   * Write your model definitions here
+   */
+
+  namespace org.audit.loan
+
+  import org.audit.participant.LoanParticipant
+
+  asset Loan identified by loanId
+  {
+    o String loanId
+    o Double loanAmount range=[0.0,] optional
+    o Integer loanDuration range=[0,] optional
+    o Double interestRate range=[0.0,] optional
+    o Boolean liquidated default = false optional
+    o Address propertyAddress optional
+    o Double monthlyPaymentAmount range=[0.0,] optional
+    o Double upb range=[0.0,] optional
+    o Borrower borrower optional
+    -->LoanParticipant updatedByLoanParticipant optional
+    o AddLoanPayment []loanPayments optional
+   }
+
+  concept Address
+  {
+    o String street
+    o String city
+    o Integer zipCode
+    o String state
+  }
+
+  concept Borrower
+  {
+    o String firstName 
+    o String lastName optional
+    o String emailId optional
+    o String borrowerId  
+  }
+
+  transaction CreateLoan
+  {
+    o String loanId
+    o Double loanAmount range=[0.0,]
+    o Integer loanDuration range=[0,]
+    o Double interestRate range=[0.0,]
+    o Boolean liquidated optional
+    o String street
+    o String city
+    o Integer zipCode
+    o String state
+    o Double monthlyPaymentAmount range=[0.0,]
+    o Double upb range=[0.0,]
+    o String firstName 
+    o String lastName optional
+    o String emailId optional
+    o String borrowerId
+    o String participantKey
+  }
+
+  transaction UpdateLoan
+  {
+    --> Loan relatedLoanAsset
+    o Integer newLoanDuration range=[0,] optional
+    o Double newInterestRate range=[0.0,] optional
+    o Boolean newLiquidated optional
+    o Double newMonthlyPaymentAmount range=[0.0,] optional
+    o Double newUpb range=[0.0,] optional
+    o String newParticipantKey optional
+  }
+
+  event LoanCreated
+  {
+    o String loanId
+    o Double loanAmount
+  }
+
+  event LoanUpdated
+  {
+     --> Loan relatedLoanAsset
+    o Integer newLoanDuration range=[0,] optional
+    o Double newInterestRate range=[0.0,] optional
+    o Boolean newLiquidated optional
+    o Double newMonthlyPaymentAmount range=[0.0,] optional
+    o Double newUpb range=[0.0,] optional
+    o String newParticipantKey optional
+
+    o Integer oldLoanDuration range=[0,] optional
+    o Double oldInterestRate range=[0.0,] optional
+    o Boolean oldLiquidated optional
+    o Double oldMonthlyPaymentAmount range=[0.0,] optional
+    o Double oldUpb range=[0.0,] optional
+    o String oldParticipantKey optional
+
+  }
+
+  transaction AddLoanPayment{
+    o Double amountPaid optional 
+    o DateTime amountPaidDt optional
+    --> Loan relatedLoanAsset
+     o String newParticipantKey optional
+  }
+
+  event LoanPaymentAdded{
+    o Double amountPaid optional
+    o DateTime amountPaidDt optional
+    --> Loan relatedLoanAsset
+    o String newParticipantKey optional
+  }

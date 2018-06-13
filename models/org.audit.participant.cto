@@ -1,0 +1,23 @@
+namespace org.audit.participant
+
+abstract participant LoanParticipant identified by loanParticipantKey{
+    o String loanParticipantKey default = "LED"
+}
+
+participant LoanNetworkAdmin extends LoanParticipant {
+}
+
+participant LoanServicingDept extends LoanParticipant{
+  o String deptId default = "LSD"
+}
+
+/*participant B2BPartner extends LoanParticipant{
+}*/
+
+participant LoanEntryDept extends LoanParticipant{
+  o String deptId default = "LED"
+}
+
+participant NPLDept extends LoanParticipant{
+  o String deptId default = "NPL"
+}
