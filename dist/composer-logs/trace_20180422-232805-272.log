@@ -1,0 +1,19 @@
+2018-04-21T04:37:26.761Z ERROR   HLFConnectionManager    :fabric-client()          [EventHub.js]: on.data - Error unmarshalling transaction= { TypeNotFoundException: Type LoanPaymentAdded is not defined in namespace org.audit.loan
+    at ModelManager.getType (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/composer-common/lib/modelmanager.js:386:19)
+    at Serializer.fromJSON (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/composer-common/lib/serializer.js:143:52)
+    at events.forEach (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/composer-client/lib/businessnetworkconnection.js:479:89)
+    at Array.forEach (<anonymous>)
+    at HLFConnection.connection.on (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/composer-client/lib/businessnetworkconnection.js:478:28)
+    at emitOne (events.js:116:13)
+    at HLFConnection.emit (events.js:211:7)
+    at ChainCodeCBE.ccEvent.eventHubs.(anonymous function).registerChaincodeEvent [as onEvent] (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:234:22)
+    at /home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/fabric-client/lib/EventHub.js:813:12
+    at Set.forEach (<anonymous>)
+    at EventHub._processChainCodeOnEvents (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/fabric-client/lib/EventHub.js:811:14)
+    at ClientDuplexStream.<anonymous> (/home/zia/.nvm/versions/node/v8.10.0/lib/node_modules/composer-rest-server/node_modules/fabric-client/lib/EventHub.js:311:10)
+    at emitOne (events.js:116:13)
+    at ClientDuplexStream.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+  name: 'TypeNotFoundException',
+  typeName: 'org.audit.loan.LoanPaymentAdded' } {}$
